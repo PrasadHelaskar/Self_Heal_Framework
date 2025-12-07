@@ -1,0 +1,9 @@
+selenium
+pytest
+webdriver-manager
+beautifulsoup4
+lxml
+python-Levenshtein
+fuzzywuzzy
+pyyaml
+allure-pytest
