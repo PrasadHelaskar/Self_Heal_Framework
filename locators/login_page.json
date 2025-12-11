@@ -1,0 +1,30 @@
+{
+    "username":{
+        "primary":{"type":"xpath", "value":"//input[@fdprocessedid='to6yeo']"},
+        "fallback":[
+            {"type":"id","value":"user-name"},
+            {"type":"name","value":"user-name"},
+            {"type":"xpath","value":"(//input[@class='input_error form_input'])[1]"},
+            {"type":"css","value":"input[type='text']"}
+        ]
+    },
+    "password":{
+        "primary":{"type":"css", "value":"input[fdprocessedid='8yviwo']"},
+        "fallback":[
+            {"type":"id", "value":"password"},
+            {"type":"name", "value":"password"},
+            {"type":"xpath", "value":"(//input[@class='input_error form_input'])[2]"},
+            {"type":"css", "value":"input[type='password']"}
+
+        ]
+    },
+    "login_button":{
+        "primary":{"type":"css", "value":"input[fdprocessedid='g79elc']"},
+        "fallback":[
+            {"type":"id","value":"login-button"},
+            {"type":"name","value":"login-button"},
+            {"type":"xpath","value":"//input[@class='submit-button btn_action']"},
+            {"type":"css","value":"input[type='submit']"}
+        ]
+    }
+}

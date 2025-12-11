@@ -1,5 +1,6 @@
 selenium
 pytest
+pytest-html
 webdriver-manager
 beautifulsoup4
 lxml
