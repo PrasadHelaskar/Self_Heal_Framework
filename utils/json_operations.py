@@ -9,7 +9,7 @@ class json_operations():
         """
             For reading the json file
         """
-        with open(self.__private_file_path, 'r',encoding='uft-8') as json_file:
+        with open(self.__private_file_path, 'r',encoding='utf-8') as json_file:
             data=json.load(json_file)
 
             return data
@@ -18,7 +18,7 @@ class json_operations():
         """
             For reading the json file and fetch a value for specific key
         """
-        with open(self.__private_file_path, 'r',encoding='uft-8') as json_file:
+        with open(self.__private_file_path, 'r',encoding='utf-8') as json_file:
             data=json.load(json_file)
 
             return data[key]
@@ -27,10 +27,10 @@ class json_operations():
         """
             For updaing the json file
         """
-        with open(self.__private_file_path,'r',encoding='uft-8') as json_file:
+        with open(self.__private_file_path,'r',encoding='utf-8') as json_file:
             data=json.load(json_file)
 
             data[key]=value
 
-        with open(self.__private_file_path,'w',encoding='uft-8') as json_file:
+        with open(self.__private_file_path,'w',encoding='utf-8') as json_file:
             json.dump(data,json_file,indent=4)

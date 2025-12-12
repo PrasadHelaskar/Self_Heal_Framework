@@ -31,7 +31,7 @@ class BaseMethods:
             WebElement: The visible web element found
         '''
         try:
-            locator=self.healing.check_locator_validity(element_name, require_visibility=True)
+            locator=self.healing.check_locator_validity(element_name)
             element=self.wait.until(EC.visibility_of_element_located(locator))
             return element
 
@@ -48,7 +48,7 @@ class BaseMethods:
             list[WebElement]: A list of visible web elements found.
         """
         try:
-            locator=self.healing.check_locator_validity(element_name, require_visibility=True)
+            locator=self.healing.check_locator_validity(element_name)
             elements=self.wait.until(EC.visibility_of_all_elements_located(locator))
             return elements
 
@@ -267,7 +267,7 @@ class BaseMethods:
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
 
-# Action Methods (scrolling actions)
+# Action Methods (scrolling)
     def scroll_till_element(self, element_name):
         """
         Scrolls the web page until the specified element is visible in the viewport.
