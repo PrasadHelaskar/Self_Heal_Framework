@@ -58,3 +58,4 @@ class Logger:
 #     log.warning('This is a warning message')
 #     log.error('This is an error message')
 #     log.critical('This is a critical message')
+#     log.exception('This is a exception message')
