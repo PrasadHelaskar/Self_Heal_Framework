@@ -53,6 +53,12 @@ class Self_Healing_Engine():
             return False
 
     def check_locator_validity(self, element_name, visibility_required:bool=True):
+        '''
+        check_locator_validity basically its main purpose to check if the given locators are valid or not
+        
+        :param element_name: Element name descriobe that for the given element engine checking the locators
+        :param visibility_required: few mwthods can be done even if element is present in DOM
+        '''
         locators=self.smart_locator.convert_locator_to_list(element_name)
 
         primary_block = self.smart_locator.get_locators_by_element_name(element_name)
@@ -68,7 +74,7 @@ class Self_Healing_Engine():
                 is_valid=self._check_locator_presence(locator_tuple)
             
             if is_valid:
-                log.info(f"Working locator → {locator_tuple}")
+                log.info(f"Working locator : {locator_tuple}")
 
                 if self.auto_update and locator_dict != primary:
                     log.info(f"Updating primary for '{element_name}' to {locator_dict}")
