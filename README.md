@@ -160,7 +160,7 @@ The intention is to **understand the mechanics behind self‑healing**, not to r
 
 ## Author
 
-**Prasad Helaskar**
+**Prasad Helaskar** </br>
 Automation Engineer | Python | Selenium | Pytest
 
 ---
