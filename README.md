@@ -171,3 +171,6 @@ Automation Engineer | Python | Selenium | Pytest
 * Healing confidence threshold
 * Allure reporting integration
 * Parallel execution support
+
+## Note
+This framework is actively evolving. Test coverage and locator strategies are being expanded incrementally to reflect real-world automation practices.
