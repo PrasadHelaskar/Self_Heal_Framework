@@ -32,6 +32,7 @@ def driver():
     driver.execute_cdp_cmd("Page.enable", {})
     driver.execute_cdp_cmd('Network.enable', {})
     driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
+    # driver.maximize_window()
 
     log.info("Webdriver is Initited with the Browser Window")
 

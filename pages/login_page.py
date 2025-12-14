@@ -18,3 +18,7 @@ class LoginPage(BaseMethods):
 
     def click_login(self, element_name):
         self.click(element_name)
+
+    def get_current_url(self)-> str:
+        url_link=self.get_url()
+        return url_link if url_link else None
