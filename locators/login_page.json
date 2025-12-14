@@ -1,17 +1,17 @@
 {
     "username": {
         "primary": {
-            "type": "id",
+            "type": "name",
             "value": "user-name"
         },
         "fallback": [
             {
-                "type": "xpath",
-                "value": "//input[@fdprocessedid='to6yeo']"
+                "type": "id",
+                "value": "user-name"
             },
             {
-                "type": "name",
-                "value": "user-name"
+                "type": "xpath",
+                "value": "//input[@fdprocessedid='to6yeo']"
             },
             {
                 "type": "xpath",
@@ -25,17 +25,17 @@
     },
     "password": {
         "primary": {
-            "type": "id",
+            "type": "name",
             "value": "password"
         },
         "fallback": [
             {
-                "type": "css",
-                "value": "input[fdprocessedid='8yviwo']"
+                "type": "id",
+                "value": "password"
             },
             {
-                "type": "name",
-                "value": "password"
+                "type": "css",
+                "value": "input[fdprocessedid='8yviwo']"
             },
             {
                 "type": "xpath",
@@ -49,17 +49,17 @@
     },
     "login_button": {
         "primary": {
-            "type": "id",
+            "type": "name",
             "value": "login-button"
         },
         "fallback": [
             {
-                "type": "css",
-                "value": "input[fdprocessedid='g79elc']"
+                "type": "id",
+                "value": "login-button"
             },
             {
-                "type": "name",
-                "value": "login-button"
+                "type": "css",
+                "value": "input[fdprocessedid='g79elc']"
             },
             {
                 "type": "xpath",
