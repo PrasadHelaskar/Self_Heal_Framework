@@ -6,6 +6,10 @@ from utils.logger import Logger
 
 log=Logger().get_logger(__name__)
 
+def pytest_configure(config):
+    config._metadata["Project"] = "Self Healing Automation Framework"
+    config._metadata["Author"] = "Prasad Helaskar"
+
 @pytest.fixture(scope="session")
 def driver():
 
@@ -40,3 +44,22 @@ def driver():
 
     log.info("The Execution is Completed and returned to conftest fixture clearing the instances\n")
     driver.quit()
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item):
+    """
+        Attach a browser screenshot to the pytest-html report when a test fails
+        during execution and a WebDriver fixture is available.
+    """
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        if "driver" in item.fixturenames:
+            driver = item.funcargs["driver"]
+            screenshot = driver.get_screenshot_as_png()
+            pytest_html = item.config.pluginmanager.getplugin("html")
+            extra = getattr(report, "extra", [])
+            extra.append(pytest_html.extras.png(screenshot))
+            report.extra = extra
