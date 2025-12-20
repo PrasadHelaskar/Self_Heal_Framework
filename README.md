@@ -1,230 +1,176 @@
- ## 🚀 Self-Healing Automation Framework (Python + Selenium + Pytest)
+# Self-Heal Framework (Selenium + Python)
 
-Automatically heal broken Selenium locators using DOM analysis, fuzzy matching, similarity scoring, and smart fallback strategies.
-Inspired by tools like Healenium, built completely in Python + Pytest + Selenium.
+## Overview
 
-## 📖 Overview
+This repository contains a **custom Selenium automation framework with a basic self‑healing mechanism**, built using **Python + Pytest**.
 
-Selenium UI tests often become flaky when UI changes break locators.
-This framework solves that problem by automatically:
+The main goal of this project is to explore how modern automation tools handle locator failures and to implement a **lightweight, transparent self‑healing approach** without relying on commercial tools.
 
-Detecting locator failures
+This is **not a wrapper around Selenium** and **not a toy project**. It focuses on:
 
-Searching DOM for matching elements
+* Practical locator recovery
+* Maintainable structure
+* Clear separation of responsibilities
 
-Computing similarity score
+---
 
-Updating locator repository
+## Why Self‑Healing?
 
-Rerunning the test with healed locator
+In real projects, UI tests fail frequently due to:
 
-Logging everything with Allure reporting
+* Minor DOM changes
+* Updated attributes (id, name, xpath)
+* UI refactoring without functional changes
 
-This results in stable, maintenance-friendly UI automation, even when your UI changes frequently.
+Instead of immediately failing the test, this framework:
 
-## ✨ Key Features
-### 🔹 Smart Locator Engine
+1. Tries the **primary locator**
+2. Falls back to **alternative locators**
+3. Updates the locator source automatically (if enabled)
 
-JSON-based locator store
+This reduces flaky failures and improves test stability.
 
-Primary + fallback locators
+---
 
-Auto-update healed locators
+## Key Features
 
-### 🔹 Self-Healing Mechanism
+* JSON‑based locator management (primary + fallback)
+* Centralized self‑healing engine
+* Automatic fallback resolution
+* Custom logging (no print statements)
+* Pytest‑based execution
+* Page‑Object‑Model friendly structure
 
-Fuzzy matching (FuzzyWuzzy)
+---
 
-Levenshtein distance
-
-Attribute similarity scoring
-
-DOM scanning & ranking
-
-### 🔹 Custom Smart WebDriver
-
-Wraps Selenium WebDriver
-
-Automatically retries & heals locators
-
-Enhanced logging
-
-### 🔹 Pytest Integration
-
-Custom plugin: pytest_self_heal.py
-
-Auto-rerun failed tests after healing
-
-Heal status included in test summary
-
-### 🔹 DOM Snapshotting
-
-Saves before and after HTML state
-
-Useful for debugging UI changes
-
-### 🔹 Allure Reporting
-
-Healing steps
-
-Healed locator
-
-Similarity score
-
-DOM snapshot attachments
-
-## 🏗 Architecture
-```bash
-                ┌───────────────────────────────────────────┐
-                │               Test Case (Pytest)           │
-                └──────────────────────────┬─────────────────┘
-                                           │
-                                 calls smart_find()
-                                           │
-                     ┌─────────────────────▼──────────────────────┐
-                     │            Smart WebDriver                 │
-                     └─────────────────────┬──────────────────────┘
-                                           │
-                         tries primary locator → fails?
-                                           │ yes
-                     ┌─────────────────────▼──────────────────────┐
-                     │           Self-Healing Engine              │
-                     │  - fallback locators                       │
-                     │  - DOM scanning                            │
-                     │  - similarity engine                       │
-                     └─────────────────────┬──────────────────────┘
-                                           │
-                                 healed? yes/no
-                                           │
-                       updates JSON + reruns test after heal
+## Project Structure
 
 ```
-## 📁 Folder Structure
-
-self_heal_framework/</br>
-│</br>
-├── core/</br>
-│   ├── smart_driver.py</br>
-│   ├── smart_locator.py</br>
-│   ├── similarity.py</br>
-│   ├── locator_store.py</br>
-│   ├── dom_parser.py</br>
-│   └── logger.py</br>
-│</br>
-├── locators/</br>
-│   ├── locators.json</br>
-│   └── backup_locators.json</br>
-│</br>
-├── snapshots/</br>
-│   ├── before/</br>
-│   ├── after/</br>
-│   └── diff/</br>
-│</br>
-├── plugins/</br>
-│   └── pytest_self_heal.py </br>
-│</br>
-├── config/</br>
-│   ├── settings.yaml </br>
-│   └── environment.json </br>
-│ </br>
-├── tests/ </br>
-│   └── test_login.py </br>
-│ </br>
-├── reports/ </br>
-│   ├── allure-results/ </br>
-│   └── healing-log.txt </br>
-│ </br>
-├── utils/ </br>
-│   ├── file_utils.py </br>
-│   ├── retry.py </br>
-│   └── json_utils.py </br>
-│ </br>
-├── requirements.txt </br>
-├── conftest.py </br>
-└── README.md </br>
-
-## ⚙ Installation
-### 1️⃣ Clone the repository
-```bash  
-  git clone https://github.com/<your-username>/self-heal-framework.git </br>
-  cd self-heal-framework
+Self_Heal_Framework/
+│
+├── core/
+│   ├── self_healing_engine.py   # Core healing logic
+│   ├── smart_locator.py         # Locator resolution & fallback handling
+│
+├── utils/
+│   ├── json_operations.py       # JSON read/write utilities
+│   ├── logger.py                # Custom logging configuration
+│
+├── locators/
+│   └── login_page.json          # Primary + fallback locators
+│
+├── tests/
+│   └── test_login.py            # Sample test cases
+│
+├── conftest.py                  # Pytest setup
+├── requirements.txt
+└── README.md
 ```
 
-### 2️⃣ Install dependencies
-```bash
-  pip install -r requirements.txt
-```
+---
 
-### 3️⃣ Install Allure (optional but recommended)
+## Locator Strategy (JSON Driven)
 
-Follow installation:
-https://docs.qameta.io/allure/#_installing_a_commandline
+Each element is defined with:
 
-## 🔍 How It Works
-When a locator fails:
+* One **primary locator**
+* One or more **fallback locators**
 
-Framework fetches alternative locators from locators.json
-Tries fallback locators
-If none work → performs DOM scan
-Computes similarity score using:
-Levenshtein distance
-Fuzzy attribute matching
-Text similarity
-Chooses best candidate
-Updates locator store automatically
-Reruns the test through Pytest plugin
-Logs the entire healing process
+Example:
 
-## ▶️ Usage
-```python
-Import SmartDriver
-from core.smart_driver import SmartDriver
-
-def test_login():
-    driver = SmartDriver()
-    driver.open("https://example.com")
-
-    login_btn = driver.find("login_button")
-    login_btn.click()
-
-    driver.quit()
-
-Sample locator entry (locators.json)
+```json
 {
-  "login_button": {
-    "primary": "//button[@id='login']",
-    "fallbacks": [
-      "//button[text()='Login']",
-      "//button[contains(@class,'btn-primary')]"
+  "username": {
+    "primary": {"type": "id", "value": "user-name"},
+    "fallback": [
+      {"type": "xpath", "value": "//input[@name='user-name']"},
+      {"type": "css", "value": "input[data-test='username']"}
     ]
   }
 }
 ```
 
-## ⚙ Configuration (settings.yaml)
-healing:
-  similarity_threshold: 70 </br>
-  enable_snapshot: true </br>
-  snapshot_path: snapshots/ </br>
+The framework always prefers the primary locator and switches to fallback only on failure.
 
-retry:
-  max_attempts: 2
+---
 
-## 📊 Reporting (Allure)
+## How Self‑Healing Works (High Level)
 
-Run with Allure:
+1. Test requests an element by **logical name** (not Selenium locator)
+2. Smart Locator fetches primary + fallback locators from JSON
+3. Self‑Healing Engine tries each locator in order
+4. On success:
+
+   * Element is returned
+   * (Optional) locator source is updated
+5. On failure:
+
+   * Clear error with logging context
+
+This keeps test scripts clean and readable.
+
+---
+
+## How to Run
+
+### Prerequisites
+
+* Python 3.9+
+* Chrome browser
+* ChromeDriver (compatible version)
+
+### Setup
+
 ```bash
-pytest --alluredir=reports/allure-results
+pip install -r requirements.txt
 ```
 
-Generate report:
+### Execute Tests
+
 ```bash
-allure serve reports/allure-results
+pytest -v
 ```
 
-Allure will display:
-Broken locator
-Healed locator
-Healing confidence score
-DOM snapshots (before/after)
-Plugin rerun status
+---
+
+## Logging
+
+* Uses Python logging module
+* Logs locator attempts and healing decisions
+* Designed to integrate with reporting tools (Allure planned)
+
+---
+
+## Current Status
+
+* Core self‑healing logic implemented
+* JSON‑based locator strategy complete
+* Sample test cases added
+* Reporting integration planned
+
+---
+
+## Disclaimer
+
+This project is built as a **learning‑focused engineering exercise**, inspired by tools like Testim, Mabl, and Healenium.
+
+The intention is to **understand the mechanics behind self‑healing**, not to replace enterprise‑grade tools.
+
+---
+
+## Author
+
+**Prasad Helaskar** </br>
+Automation Engineer | Python | Selenium | Pytest
+
+---
+
+## Future Enhancements
+
+* Locator reliability scoring
+* Healing confidence threshold
+* Allure reporting integration
+* Parallel execution support
+
+## Note
+This framework is actively evolving. Test coverage and locator strategies are being expanded incrementally to reflect real-world automation practices.

@@ -9,14 +9,15 @@ from pages.login_page import LoginPage
 
 log=Logger().get_logger(__name__)
 
-with open("/mnt/k/self_heal_framework/code/test_data/login_data.json") as  testdatafile:
+with open("/mnt/k/self_heal_framework/framework/codebase/test_data/login_data.json") as  testdatafile:
     data=json.load(testdatafile)
 
 class Test_Login():
     @pytest.mark.order(1)
     @pytest.mark.parametrize("credentials",[
-        data["valid_data"],
-        data["locked_out_user_invalid_data"]
+        data["standard_user"],
+        data["locked_out_user"],
+        data["problem_user"]
     ]
 )
     def test_login(self,driver,credentials):
@@ -39,3 +40,4 @@ class Test_Login():
         result=login(username,password)
 
         log.info("Login Results : %s",result)
+        assert result,"The login failed"

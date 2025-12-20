@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 class Logger:
-    def __init__(self, base_log_dir="/mnt/k/self_heal_framework/code/reports/logs", log_level=logging.INFO):
+    def __init__(self, base_log_dir="/mnt/k/self_heal_framework/framework/codebase/reports", log_level=logging.INFO):
         # Directory wrt year and month creation
         today = datetime.now()
         year = today.strftime("%Y")
