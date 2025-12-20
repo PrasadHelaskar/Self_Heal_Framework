@@ -7,7 +7,7 @@ class LoginPage(BaseMethods):
     def __init__(self, driver):
         page_name = "login_page"      
         smart_locators=SmartLocators(page_name)
-        healing = Self_Healing_Engine(driver, smart_locators)
+        healing = Self_Healing_Engine(driver, smart_locators,auto_update=False)
         super().__init__(driver, healing)
 
     def enter_username(self, element_name, username):

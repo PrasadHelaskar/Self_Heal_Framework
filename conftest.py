@@ -6,9 +6,9 @@ from utils.logger import Logger
 
 log=Logger().get_logger(__name__)
 
-def pytest_configure(config):
-    config._metadata["Project"] = "Self Healing Automation Framework"
-    config._metadata["Author"] = "Prasad Helaskar"
+# def pytest_configure(config):
+#     config._metadata["Project"] = "Self Healing Automation Framework"
+#     config._metadata["Author"] = "Prasad Helaskar"
 
 @pytest.fixture(scope="session")
 def driver():
@@ -26,9 +26,8 @@ def driver():
     chrome_options.binary_location = "/usr/bin/google-chrome"
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--force-device-scale-factor=0.7")
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
+    # chrome_options.add_argument("--window-size=1920,1080")
     # chrome_options.add_argument("--headless")
 
     driver = webdriver.Chrome(options=chrome_options)
@@ -36,7 +35,7 @@ def driver():
     driver.execute_cdp_cmd("Page.enable", {})
     driver.execute_cdp_cmd('Network.enable', {})
     driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
-    # driver.maximize_window()
+    driver.maximize_window()
 
     log.info("Webdriver is Initited with the Browser Window")
 
@@ -58,8 +57,8 @@ def pytest_runtest_makereport(item):
     if report.when == "call" and report.failed:
         if "driver" in item.fixturenames:
             driver = item.funcargs["driver"]
-            screenshot = driver.get_screenshot_as_png()
+            screenshot = driver.get_screenshot_as_base64()
             pytest_html = item.config.pluginmanager.getplugin("html")
             extra = getattr(report, "extra", [])
             extra.append(pytest_html.extras.png(screenshot))
-            report.extra = extra
+            report.extras = extra
