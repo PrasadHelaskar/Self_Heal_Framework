@@ -1,9 +1,12 @@
 import logging
 import os
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv(".config/.env")
 
 class Logger:
-    def __init__(self, base_log_dir="/mnt/k/self_heal_framework/framework/codebase/reports", log_level=logging.INFO):
+    def __init__(self, base_log_dir=os.getenv("LOGGER_BASE_PATH"), log_level=logging.INFO):
         # Directory wrt year and month creation
         today = datetime.now()
         year = today.strftime("%Y")
