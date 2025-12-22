@@ -120,6 +120,7 @@ This keeps test scripts clean and readable.
 * ChromeDriver (compatible version)
 
 ### Setup
+---
 
 ```bash
 pip install -r requirements.txt

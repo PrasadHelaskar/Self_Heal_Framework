@@ -1,9 +1,12 @@
+import os
 import json
+from dotenv import load_dotenv 
 
+load_dotenv(".config/.env")
 class json_operations():
     def __init__(self,filename=None):
         self.filename= filename
-        self.__private_file_path=f"/mnt/k/self_heal_framework/framework/codebase/locators/{self.filename}.json"
+        self.__private_file_path=os.getenv("LOCATOR_BASE_PATH")+f"{self.filename}.json"
 
     def json_read(self):
         """
