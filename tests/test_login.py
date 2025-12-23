@@ -33,7 +33,6 @@ class Test_Login():
             login_page.enter_username("username",username)
             login_page.enter_username("password",password)
             login_page.click_login("login_button")
-            time.sleep(2)
             
             return login_page.get_current_url() == "https://www.saucedemo.com/inventory.html"
         
