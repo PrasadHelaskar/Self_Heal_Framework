@@ -3,11 +3,14 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 
-load_dotenv(".config/.env")
+from utils.path_resolver import resolve_path
+load_dotenv(resolve_path(".config/.env"))
 
 class Logger:
-    def __init__(self, base_log_dir=os.getenv("LOGGER_BASE_PATH"), log_level=logging.INFO):
+    def __init__(self, log_level=logging.INFO):
         # Directory wrt year and month creation
+        base_log_dir=resolve_path(os.getenv("LOGGER_BASE_PATH"))
+        
         today = datetime.now()
         year = today.strftime("%Y")
         month = today.strftime("%m")
