@@ -6,7 +6,7 @@ import pytest
 from dotenv import load_dotenv
 from utils.path_resolver import resolve_path
 from utils.logger import Logger
-from utils.network_utility import ApiListner
+from network_utils.network_utility import ApiListner
 from pages.login_page import LoginPage
 
 log=Logger().get_logger(__name__)
