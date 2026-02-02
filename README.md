@@ -50,11 +50,14 @@ Self_Heal_Framework/
 │
 ├── core/
 │   ├── self_healing_engine.py   # Core healing logic
-│   ├── smart_locator.py         # Locator resolution & fallback handling
+│   └── smart_locator.py         # Locator resolution & fallback handling
+│
+├── network_utils/
+│   └──network_utility.py        # Capture and format the APi during the execution
 │
 ├── utils/
 │   ├── json_operations.py       # JSON read/write utilities
-│   ├── logger.py                # Custom logging configuration
+│   └── logger.py                # Custom logging configuration
 │
 ├── locators/
 │   └── login_page.json          # Primary + fallback locators
@@ -141,6 +144,12 @@ pytest -v
 * Designed to integrate with reporting tools (Allure planned)
 
 ---
+
+## Network Utilities
+
+  Captures and filters backend API calls during UI execution.
+  Used by self-heal logic to distinguish UI vs backend failures.
+
 
 ## Current Status
 
