@@ -10,20 +10,20 @@ class ApiListner():
             "saucedemo"
         ]
 
-    def _response_fromatter(self,request):
+    def _response_fromatter(self,request) -> dict:
         response_time=None
 
         if request.date and request.response and request.response.date:
             response_time= round((request.response.date-request.date).total_seconds()* 1000, 2)
-        
+
         return({
             "url": request.url,
             "method": request.method,
             "status": request.response.status_code,
-            "time": response_time            
+            "time": response_time
         })
 
-    def api_analysis(self,api_list=None,print_log=False,capture_all=False):
+    def api_analysis(self,api_list=None,print_log=False,capture_all=False) -> list:
         responces=[]
 
         for request in self.driver.requests:
@@ -48,3 +48,5 @@ class ApiListner():
         if print_log:
             for api_call in responces:
                 log.info(api_call)
+
+        return responces

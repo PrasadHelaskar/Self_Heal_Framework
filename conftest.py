@@ -3,6 +3,7 @@ import pytest
 
 from seleniumwire import webdriver
 from utils.logger import Logger
+from network_utils.filter_api_performance import performance_filter
 
 log=Logger().get_logger(__name__)
 
@@ -10,7 +11,7 @@ log=Logger().get_logger(__name__)
 #     config._metadata["Project"] = "Self Healing Automation Framework"
 #     config._metadata["Author"] = "Prasad Helaskar"
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def driver():
 
     """
@@ -31,7 +32,6 @@ def driver():
     chrome_options.add_argument("--headless")
 
     driver = webdriver.Chrome(options=chrome_options)
-    time.sleep(1)
     driver.execute_cdp_cmd("Page.enable", {})
     driver.execute_cdp_cmd('Network.enable', {})
     driver.execute_cdp_cmd("Page.setLifecycleEventsEnabled",{"enabled": True})
@@ -40,6 +40,12 @@ def driver():
     log.info("Webdriver is Initited with the Browser Window")
 
     yield driver
+
+    performance_matrix=performance_filter(driver)
+
+    log.info("Slow API Time: %s",performance_matrix[0])
+    log.info("Fast API Time: %s",performance_matrix[1])
+    log.info("Average Time: %s milis",performance_matrix[2])
 
     log.info("The Execution is Completed and returned to conftest fixture clearing the instances\n")
     driver.quit()
