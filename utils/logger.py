@@ -45,7 +45,6 @@ class Logger:
             self.logger.addHandler(console_handler)
 
     def get_logger(self, classname=None):
-        # using the logger to push entried in the file
         if classname:
             # Classname is passed while initiating log in the dersired file
             return logging.LoggerAdapter(self.logger, {'classname': classname})
