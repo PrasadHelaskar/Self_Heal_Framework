@@ -1,4 +1,4 @@
-# Self-Heal Framework (Selenium + Python)
+# Self-Heal Framework (SeleniumWire + Python)
 
 ## Overview
 
