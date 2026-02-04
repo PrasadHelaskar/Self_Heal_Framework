@@ -9,7 +9,7 @@ The main goal of this project is to explore how modern automation tools handle l
 This is **not a wrapper around Selenium** and **not a toy project**. It focuses on:
 
 * Practical locator recovery
-* Maintainable structure
+* Maintainable structure 
 * Clear separation of responsibilities
 
 ---
