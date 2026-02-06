@@ -1,7 +1,7 @@
 # Self-Heal Framework (SeleniumWire + Python)
 
 ## Overview
-
+ 
 This repository contains a **custom Selenium automation framework with a basic self‑healing mechanism**, built using **Python + Pytest**.
 
 The main goal of this project is to explore how modern automation tools handle locator failures and to implement a **lightweight, transparent self‑healing approach** without relying on commercial tools.
