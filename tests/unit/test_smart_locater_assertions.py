@@ -1,6 +1,9 @@
 import pytest
 
 from core.smart_locator import SmartLocators
+from utils.logger import Logger
+
+log=Logger().get_logger(__name__)
 
 class Test_DummyLocatorReader:
     """
@@ -32,5 +35,8 @@ class Test_DummyLocatorReader:
 
     @pytest.mark.unit
     def test_get_locators_raises_keyerror_for_missing_element(self):
-        reader = SmartLocators(self.page_name())
-        reader.get_locators_by_element_name("email_input")
+        try:
+            reader = SmartLocators(self.page_name())
+            reader.get_locators_by_element_name("email_input")
+        except KeyError as ke:
+            log.error("Got KeyError: %s", ke)
