@@ -14,7 +14,7 @@ with open(resolve_path("test_data/login_data.json")) as  testdatafile:
     data=json.load(testdatafile)
 
 class Test_Login():
-    @pytest.mark.order(1)
+    @pytest.mark.flows
     @pytest.mark.parametrize("credentials",[
         data["standard_user"],
         data["locked_out_user"],

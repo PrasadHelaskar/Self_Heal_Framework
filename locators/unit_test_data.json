@@ -1,0 +1,15 @@
+{
+    "username_input": 
+    {
+        "primary": {"by": "id", "value": "username"},
+        "fallback": 
+        [
+            {"by": "xpath", "value": "//input[@name='username']"}
+        ]
+    },
+    
+    "password_input": 
+    {
+        "primary": {"by": "id", "value": "password"}
+    }
+}
