@@ -1,5 +1,12 @@
 # Self-Heal Framework (SeleniumWire + Python)
 
+![CI](https://github.com/PrasadHelaskar/Self_Heal_Framework/actions/workflows/ci.yml/badge.svg)
+![Selenium](https://img.shields.io/badge/Selenium-WebDriver-43B02A?logo=selenium&logoColor=white)
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Pytest](https://img.shields.io/badge/tested%20with-pytest-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+
 ## Overview
  
 This repository contains a **custom Selenium automation framework with a basic self‑healing mechanism**, built using **Python + Pytest**.
