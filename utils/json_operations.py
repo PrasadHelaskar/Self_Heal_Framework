@@ -7,8 +7,6 @@ class json_operations():
     def __init__(self,filename=None):
         self.filename= filename
         self.__private_file_path=resolve_path(os.getenv("LOCATOR_BASE_PATH")+f"{self.filename}.json")
-        print("DEBUG → LOCATOR_BASE_PATH repr:", repr(os.getenv("LOCATOR_BASE_PATH")))
-        print("DEBUG → filename:", self.filename)
 
     def json_read(self):
         """
