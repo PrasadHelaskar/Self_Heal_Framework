@@ -1,18 +1,14 @@
 import os
 import json
-from pathlib import Path
-
 from utils.path_resolver import resolve_path
 from dotenv import load_dotenv
 
 class json_operations():
     def __init__(self,filename=None):
         self.filename= filename
-        base = os.getenv("LOCATOR_BASE_PATH")
-        relative_path = Path(base) / f"{self.filename}.json"
-        self.__private_file_path = resolve_path(relative_path)
-        
-        # self.__private_file_path=resolve_path(os.getenv("LOCATOR_BASE_PATH")+f"{self.filename}.json")
+        self.__private_file_path=resolve_path(os.getenv("LOCATOR_BASE_PATH")+f"{self.filename}.json")
+        print("DEBUG → LOCATOR_BASE_PATH repr:", repr(base))
+        print("DEBUG → filename:", self.filename)
 
     def json_read(self):
         """
