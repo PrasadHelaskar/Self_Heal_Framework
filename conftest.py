@@ -43,9 +43,9 @@ def driver():
 
     performance_matrix=performance_filter(driver)
 
-    log.info("Slow API Time: %s",performance_matrix[0])
-    log.info("Fast API Time: %s",performance_matrix[1])
-    log.info("Average Time: %s milis",performance_matrix[2])
+    log.info("Slow API Time: %.2f",performance_matrix[0])
+    log.info("Fast API Time: %.2f",performance_matrix[1])
+    log.info("Average Time: %.2f milis",performance_matrix[2])
 
     log.info("The Execution is Completed and returned to conftest fixture clearing the instances\n")
     driver.quit()
