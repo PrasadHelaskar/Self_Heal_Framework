@@ -32,7 +32,7 @@ jobs:
       
       - name: Running The Regession Test Cases
         run: |
-          pytest -vv -m flows tests/
+          PYTHONPATH=$PWD pytest -vv -m flows tests/
 
       - name: Upload logs and reports
         if: always()

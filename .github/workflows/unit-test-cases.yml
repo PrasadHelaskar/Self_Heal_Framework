@@ -30,7 +30,7 @@ jobs:
 
       - name: Running The Unit Test Cases
         run: |
-          pytest -vv -m unit tests/
+          PYTHONPATH=$PWD pytest -vv -m unit tests/
 
       - name: Upload logs and reports
         if: always()
