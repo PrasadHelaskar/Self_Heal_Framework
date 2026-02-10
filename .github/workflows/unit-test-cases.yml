@@ -8,6 +8,12 @@ on:
 jobs:
   Master-Merge:
     runs-on: ubuntu-latest
+    env:
+      LOCATOR_BASE_PATH: ${{ secrets.LOCATOR_BASE_PATH }}
+      LOGGER_BASE_PATH: ${{ secrets.LOGGER_BASE_PATH }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      URL: ${{ secrets.URL }}
 
     steps:
       - name: Initial checkout
