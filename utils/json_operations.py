@@ -7,7 +7,7 @@ class json_operations():
     def __init__(self,filename=None):
         self.filename= filename
         base = os.getenv("LOCATOR_BASE_PATH")
-        relative_path = "base/f{self.filename}.json"
+        relative_path = f"base/{self.filename}.json"
         self.__private_file_path = resolve_path(relative_path)
         
         # self.__private_file_path=resolve_path(os.getenv("LOCATOR_BASE_PATH")+f"{self.filename}.json")
