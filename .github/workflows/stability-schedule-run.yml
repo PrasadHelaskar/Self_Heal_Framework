@@ -27,7 +27,8 @@ jobs:
 
       - name: Prepare artifact directories
         run: |
-          mkdir -p logs reports
+          mkdir -p logs 
+          mkdir -p reports
       
       - name: Running The Regession Test Cases
         run: |

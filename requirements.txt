@@ -20,3 +20,6 @@ tqdm
 # Logging / helpers
 coloredlogs
 humanfriendly
+
+# Special
+blinker<1.7
