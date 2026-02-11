@@ -1,4 +1,4 @@
-name: Self-Heal Evening Running
+name: Self-Heal Evening Run
 
 on:
   schedule:
