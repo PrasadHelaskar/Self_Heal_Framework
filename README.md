@@ -1,7 +1,6 @@
 # Self-Heal Framework (SeleniumWire + Python)
 
 ![CI](https://github.com/PrasadHelaskar/Self_Heal_Framework/actions/workflows/unit-test-cases.yml/badge.svg)
-![CI](https://github.com/PrasadHelaskar/Self_Heal_Framework/actions/workflows/stability-schedule-run.yml/badge.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-WebDriver-43B02A?logo=selenium&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![Pytest](https://img.shields.io/badge/tested%20with-pytest-brightgreen)
