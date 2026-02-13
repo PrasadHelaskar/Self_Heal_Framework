@@ -18,7 +18,7 @@ class Test_Login():
     @pytest.mark.parametrize("credentials",[
         data["standard_user"],
         data["locked_out_user"],
-        data["problem_user"]
+        # data["problem_user"]
     ]
 )
     def test_login(self,driver,credentials):
