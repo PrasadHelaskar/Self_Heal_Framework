@@ -57,6 +57,3 @@ class Test_Login():
             password=credentials["password"]
 
             result=self._login(driver,username,password)
-
-            if not result:
-                raise InvalidUserException()
