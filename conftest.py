@@ -11,6 +11,13 @@ log=Logger().get_logger(__name__)
 #     config._metadata["Project"] = "Self Healing Automation Framework"
 #     config._metadata["Author"] = "Prasad Helaskar"
 
+def pytest_runtest_logreport(report):
+    if report.when == "call" and report.failed:
+        log.error(f"FAILED: {report.nodeid}")
+
+        if hasattr(report.longrepr, "reprcrash"):
+            log.error(f"ERROR: {report.longrepr.reprcrash.message}")
+
 @pytest.fixture(scope="function")
 def driver():
 
